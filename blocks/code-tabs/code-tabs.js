@@ -19,6 +19,7 @@ function html(tabs = []) {
                               id="${`${blockId}__vertical__content__${i}`}"                               
                               role="region"                                              
                               aria-hidden="${i !== 0}"
+                              aria-label="${tab.title}"
                               class="content"
                               data-js-tab-content="${i}">
                           <div class="description"${tab.description}</div>
