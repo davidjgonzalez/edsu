@@ -8,32 +8,41 @@ function html(tabs = []) {
         <div class="vertical" data-js-small-screen role="tablist" aria-orientation="vertical" aria-multiselectable="false" aria-label="Code tabs">
           ${tabs
             .map((tab, i) => `
-                        <p class="tab" 
+                        <button 
                             data-js-tab="${i}" 
                             class="tab" 
                             role="tab"
                             id="${`${blockId}__vertical__tab__${i}`}"
                             aria-controls="${`${blockId}__vertical__tabpanel__${i}`}" 
-                            aria-selected="${i === 0}">${tab.title}</p>
+                            aria-selected="${i === 0}">${tab.title}</button>
 
-               
+                        <div 
+                              data-js-tab-content="${i}" 
+                              class="content"
+                              id="${`${blockId}__vertical__tabpanel__${i}`}" 
+                              role="tabpanel" 
+                              aria-hidden="${i !== 0}">
+                          <div class="description"${tab.description}</div>
+                          <div class="code"><pre><code>${tab.code}</code></pre></div>
+                        </div>
                 `).join("")}
         </div>
           
         <!-- Horizontal layout for large screens -->
         <div class="horizontal" data-js-large-screen>
-              <ul class="tabs" role="tablist">
+          <nav class="tabs" role="tablist" aria-orientation="vertical" aria-multiselectable="false" aria-label="Code tabs">
                   ${tabs
                     .map(
                       (tab, i) => `
-                      <li class="tab" 
+                      <button 
+                          class="tab" 
                           role="tab"
                           aria-controls="${`${blockId}__horizontal__${i}`}"
                           data-js-tab="${i}" 
-                          aria-selected="${i === 0}">${tab.title}</li>`
+                          aria-selected="${i === 0}">${tab.title}</button>`
                         )
                     .join("")}
-              </ul>
+          </nav>
 
               ${tabs
                 .map(
@@ -43,8 +52,8 @@ function html(tabs = []) {
                               id="${`${blockId}__horizontal__${i}`}"
                               data-js-tab-content="${i}"
                               aria-hidden="${i !== 0}">
-                          <p class="title" 
-                              data-js-tab-control="${i}">${tab.title}</p>
+                          <h4 class="title" 
+                              data-js-tab-control="${i}">${tab.title}</h4>
                           <div class="description" 
                                data-js-description>${tab.description}</div>
                           <div class="code" data-js-code>
