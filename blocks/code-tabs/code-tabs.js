@@ -5,33 +5,24 @@ function html(tabs = []) {
 
   return `
         <!-- Vertical layout for small screens -->
-        <div class="vertical" data-js-small-screen role="tablist">
+        <div class="vertical" data-js-small-screen role="tablist" aria-orientation="vertical" aria-multiselectable="false" aria-label="Code tabs">
           ${tabs
             .map((tab, i) => `
-                    <section class="tab-item">
-                        <p class="title" 
-                            role="tab" 
+                        <p class="tab" 
                             data-js-tab="${i}" 
                             class="tab" 
-                            aria-controls="${`${blockId}__vertical__${i}`}" 
+                            role="tab"
+                            id="${`${blockId}__vertical__tab__${i}`}"
+                            aria-controls="${`${blockId}__vertical__tabpanel__${i}`}" 
                             aria-selected="${i === 0}">${tab.title}</p>
 
-                        <div class="content"
-                              data-js-tab-content="${i}" 
-                              id="${`${blockId}__vertical__${i}`}" 
-                              role="tabpanel" 
-                              aria-hidden="${i !== 0}">
-                          <div class="description"${tab.description}</div>
-                          <div class="code"><pre><code>${tab.code}</code></pre></div>
-                        </div>
-                    </section> 
+               
                 `).join("")}
         </div>
           
         <!-- Horizontal layout for large screens -->
         <div class="horizontal" data-js-large-screen>
-          <nav class="tabs">
-              <ul role="tablist">
+              <ul class="tabs" role="tablist">
                   ${tabs
                     .map(
                       (tab, i) => `
@@ -43,7 +34,6 @@ function html(tabs = []) {
                         )
                     .join("")}
               </ul>
-          </nav>
 
               ${tabs
                 .map(
@@ -53,8 +43,8 @@ function html(tabs = []) {
                               id="${`${blockId}__horizontal__${i}`}"
                               data-js-tab-content="${i}"
                               aria-hidden="${i !== 0}">
-                          <h4 class="title" 
-                              data-js-tab-control="${i}">${tab.title}</h4>
+                          <p class="title" 
+                              data-js-tab-control="${i}">${tab.title}</p>
                           <div class="description" 
                                data-js-description>${tab.description}</div>
                           <div class="code" data-js-code>
