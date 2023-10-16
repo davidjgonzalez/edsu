@@ -17,7 +17,7 @@ function html(tabs = []) {
                             data-js-tab="${i}">${tab.title}</button>
                         <section 
                               id="${`${blockId}__vertical__content__${i}`}"                               
-                              role="region"                                                            
+                              role="region"                                              
                               aria-hidden="${i !== 0}"
                               class="content"
                               data-js-tab-content="${i}">
@@ -82,7 +82,7 @@ function addTabClickListener(block) {
     tab.addEventListener("click", () => {
       // Update the data-js-tab-control elements to have correct aria-selected state        
       const tabId = tab.dataset.jsTab;
-      
+
       tabs.forEach((el) => { 
         el.setAttribute("aria-selected", false);
         el.setAttribute("aria-expanded", false);
