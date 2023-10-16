@@ -12,6 +12,7 @@ import {
   loadBlocks,
   loadCSS,
 } from './aem.js';
+import autoblock from './autoblock.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -48,7 +49,7 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    autoblock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

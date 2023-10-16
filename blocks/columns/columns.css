@@ -19,6 +19,28 @@
   display: block;
 }
 
+
+/* Card */
+
+.columns.cards {
+  align-items: start;
+
+}
+
+.columns.cards > div > div {
+  background-color: white;
+  padding: 0rem 2rem;
+  border: var(--box-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transition: box-shadow .5s ease-out 100ms;
+}
+
+.columns.cards > div > div:hover {
+  box-shadow: var(--box-shadow-heavy);
+}
+
+
 @media (min-width: 900px) {
   .columns > div {
     align-items: center;
@@ -27,7 +49,9 @@
   }
 
   .columns > div > div {
-    flex: 1;
+    flex: 1 1 0;
+    width: 0;
     order: unset;
+    align-self: stretch;
   }
 }
